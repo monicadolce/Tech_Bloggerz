@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3001;
 
 // Sessions with cookies
 const sess = {
-    secret: 'Super secret secret',
+    secret: process.env.SECRET,
     // TODO: Add a comment describing the purpose of adding a cookies object to our options to our session object
     cookie: {
         // TODO: Add a comment describing the functionality of the maxAge attribute = 1 day
