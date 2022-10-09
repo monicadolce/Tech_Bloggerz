@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const { Post } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // Post route allows to create a post with text
-router.post("/text", async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
       const postData = await Post.create({
         caption: req.body.caption,
@@ -15,7 +16,7 @@ router.post("/text", async (req, res) => {
     }
   });
   // Put route allows to update the post based on the user id
-  router.put("/:id", async (req, res) => {
+  router.put('/:id', withAuth, async (req, res) => {
     Post.update(
       {
         caption: req.body.caption,
@@ -35,7 +36,7 @@ router.post("/text", async (req, res) => {
   });
   
   // Delete route allows to delete the post based on the user id
-  router.delete("/:id", async (req, res) => {
+  router.delete('/:id', withAuth, async (req, res) => {
     try {
       const postData = await Post.destroy({
         where: {
