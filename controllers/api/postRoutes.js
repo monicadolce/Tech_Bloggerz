@@ -6,7 +6,7 @@ const withAuth = require('../../utils/auth');
 router.post('/', withAuth, async (req, res) => {
     try {
       const postData = await Post.create({
-        caption: req.body.caption,
+        post: req.body.post,
         user_id: req.session.user_id,
       });
       console.log(postData)
@@ -19,7 +19,7 @@ router.post('/', withAuth, async (req, res) => {
   router.put('/:id', withAuth, async (req, res) => {
     Post.update(
       {
-        caption: req.body.caption,
+        post: req.body.post,
       },
       {
         where: {
