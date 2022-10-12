@@ -4,10 +4,10 @@ const sequelize = require('../config/connection');
 // const { canTreatArrayAsAnd } = require('sequelize/types/utils');
 
 class User extends Model {
-    checkPassword(loginPass) {
-        return bcrypt.compareSync(loginPass, this.password);
+    checkPassword(loginPw) {
+        return bcrypt.compareSync(loginPw, this.password);
     }
-};
+}
 
 User.init(
     {
@@ -17,7 +17,7 @@ User.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        username: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -33,19 +33,19 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                len:[8],
+                len: [8],
             },
         },
     },
     {
         hooks: {
-            beforeCreate: async (newUser) => {
-                newUser.password = await bcrypt.hash(newUser.password, 10);
-                return newUser;
+            beforeCreate: async (newUserData) => {
+                newUserData.password = await bcrypt.hash(newUserData.password, 10);
+                return newUserData;
             },
-            beforeUpdate: async (updateUser) => {
-                updateUser.password = await bcrypt.hash(updateUser.password, 10);
-                return updateUser;
+            beforeUpdate: async (updatedUserData) => {
+                updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+                return updatedUserData;
             },
         },
         sequelize,
@@ -57,3 +57,58 @@ User.init(
 );
 
 module.exports = User;
+
+// class User extends Model {
+//     checkPassword(loginPass) {
+//         return bcrypt.compareSync(loginPass, this.password);
+//     }
+// };
+
+// User.init(
+//     {
+//         id: {
+//             type: DataTypes.INTEGER,
+//             allowNull: false,
+//             primaryKey: true,
+//             autoIncrement: true,
+//         },
+//         username: {
+//             type: DataTypes.STRING,
+//             allowNull: false,
+//         },
+//         email: {
+//             type: DataTypes.STRING,
+//             allowNull: false,
+//             unique: true,
+//             validate: {
+//                 isEmail: true,
+//             },
+//         },
+//         password: {
+//             type: DataTypes.STRING,
+//             allowNull: false,
+//             validate: {
+//                 len:[8],
+//             },
+//         },
+//     },
+//     {
+//         hooks: {
+//             beforeCreate: async (newUser) => {
+//                 newUser.password = await bcrypt.hash(newUser.password, 10);
+//                 return newUser;
+//             },
+//             beforeUpdate: async (updateUser) => {
+//                 updateUser.password = await bcrypt.hash(updateUser.password, 10);
+//                 return updateUser;
+//             },
+//         },
+//         sequelize,
+//         timestamps: false,
+//         freezeTableName: true,
+//         underscored: true,
+//         modelName: 'user',
+//     }
+// );
+
+// module.exports = User;
