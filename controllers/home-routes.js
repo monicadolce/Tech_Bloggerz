@@ -1,13 +1,17 @@
 const router = require('express').Router();
-const { User, Post } = require('../models');
+const { Post, User } = require('../models');
 const withAuth = require('../utils/auth')
 
 router.get('/', async (req, res) => {
     try {
-        const user = await User.findAll({
-            include: [{model: Post}]
-            
+        const user = await Post.findAll({
+            include: [
+              {
+                model: User,
+              },
+            ],
         });
+        
         res.render('homepage');
     } catch (err) {
         res.status(400).json(err);
@@ -16,7 +20,7 @@ router.get('/', async (req, res) => {
 
 router.get('/dashboard', async (req, res) => {
     try {
-      // Get all projects and JOIN with user data
+      // Get all posts and JOIN with user data
       const postData = await Post.findAll({
         include: [
           {
