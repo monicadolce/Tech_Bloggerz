@@ -5,7 +5,7 @@ const newFormHandler = async (event) => {
     const description = document.querySelector('#post-desc').value.trim();
   
     if (name && description) {
-      const response = await fetch(`/api/posts`, {
+      const response = await fetch(`/api/comments`, {
         method: 'POST',
         body: JSON.stringify({ name, description }),
         headers: {
@@ -31,7 +31,7 @@ const newFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/post');
+        window.location.reload();
       } else {
         alert('Failed to update post');
       }

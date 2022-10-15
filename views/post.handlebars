@@ -2,6 +2,16 @@
   <h2>{{name}}</h2>
   <p>{{description}}</p>
   <p>Created by {{user.name}} on {{format_date date_created}}</p>
+
+  <div class="text-center">
+    {{#each post.comment as |comment|}}
+  <div class="box py-3 has-background-success-light">
+  <p>{{comment.name}} on {{format_date comment.date_created}}</p>
+  <br>
+  <p>{{comment.description}}</p>
+  </div>
+    {{/each}}
+  </div>
   
   <div class="text-center">
   <div class="text-center">
@@ -22,4 +32,4 @@
   </div>
 </div>
 
-<script src="./js/post.js"></script>
+<script src="/js/post.js"></script>
