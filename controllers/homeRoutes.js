@@ -43,7 +43,7 @@ router.get('/post/:id', async (req, res) => {
     });
 
     const post = postData.get({ plain: true });
-
+    console.log(post);
     res.render('post', {
       ...post,
       logged_in: req.session.logged_in
@@ -82,6 +82,16 @@ router.get('/login', (req, res) => {
 
   res.render('login');
 });
+
+router.get('/edit/:id', async (req, res) =>{
+  const editData = await Post.findByPk(req.params.id)
+  const edit = editData.get({ plain: true })
+  console.log(edit);
+  res.render('editPost', {
+    ...edit,
+    logged_in: req.session.logged_in
+  })
+})
 
 module.exports = router;
 

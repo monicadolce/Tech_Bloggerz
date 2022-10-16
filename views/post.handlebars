@@ -4,17 +4,17 @@
   <p>Created by {{user.name}} on {{format_date date_created}}</p>
 
   <div class="text-center">
-    {{#each post.comment as |comment|}}
+    {{#each comments as |comment|}}
   <div class="text-center">
-  <p>{{comment.name}} on {{format_date comment.date_created}}</p>
-  <br>
   <p>{{comment.description}}</p>
+  <p>{{comment.name}} on {{format_date comment.date_created}}</p>
   </div>
     {{/each}}
   </div>
   
   <div class="text-center">
   <div class="text-center">
+    {{#if logged_in}}
     <h3>Comment this Post:</h3>
     <form class="form new-post-form comment-form">
       <div class="form-group">
@@ -25,6 +25,9 @@
         <button type="submit" data-id= '{{post.id}}' class="btn btn-primary">Comment</button>
       </div>
     </form>
+    {{else}}
+    <h3>Please login to leave a comment</h3>
+    {{/if}}
   </div>
 </div>
 

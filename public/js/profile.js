@@ -37,10 +37,27 @@ const delButtonHandler = async (event) => {
   }
 };
 
+const editButtonHandler = async (event) => {
+  if(event.target.hasAttribute('data-id')) {
+    const id = event.target.getAttribute('data-id');
+
+    document.location.replace(`/edit/${id}`)
+
+  } else {
+    alert('Could not edit post');
+  }
+};
+
 document
   .querySelector('.new-post-form')
   .addEventListener('submit', newFormHandler);
 
+
+// we ensure that each post has separate button functionality 
 document
-  .querySelector('.post-list')
-  .addEventListener('click', delButtonHandler);
+  .querySelectorAll('.edit-post').forEach(button => button.addEventListener('click', editButtonHandler))
+  
+
+document
+  .querySelectorAll('.delete-post').forEach(button => button.addEventListener('click', delButtonHandler))
+  

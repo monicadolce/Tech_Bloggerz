@@ -1,20 +1,18 @@
 const newFormHandler = async (event) => {
-    // event.preventDefault();
+    event.preventDefault();
   
    
     const description = document.querySelector('#post-desc').value.trim();
-    const post_id = event.target.getAttribute('data-id');
-   console.log(post_id)
-    const postData = {
-      description: description,
-      post_id: post_id,
-    } 
-    const posting = JSON.stringify(postData)
+    // const post_id = event.target.getAttribute('data-id');
+
+    // Grabs post_id by splitting window location URL and returns an array of 
+    // strings minus 1 in order to get the last element of the array which corresponds to post_id 
+    const post_id = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
     
-    if (posting) {
+    if (description) {
       const response = await fetch('/api/comments', {
         method: 'POST',
-        body: posting,
+        body: JSON.stringify({description, post_id}),
         headers: {
           'Content-Type': 'application/json'
         },

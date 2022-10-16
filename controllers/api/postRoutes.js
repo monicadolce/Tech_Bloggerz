@@ -50,25 +50,26 @@ module.exports = router;
 //       res.status(500).json(err);
 //     }
 //   });
-//   // Put route allows to update the post based on the user id
-//   router.put('/:id', withAuth, async (req, res) => {
-//     Post.update(
-//       {
-//         post: req.body.post,
-//       },
-//       {
-//         where: {
-//           id: req.params.id,
-//         },
-//       }
-//     )
-//       .then((updatedPost) => {
-//         res.status(200).json(updatedPost);
-//       })
-//       .catch((err) => {
-//         res.status(500).json(err);
-//       });
-//   });
+  // Put route allows to update the post based on the user id
+  router.put('/:id', withAuth, (req, res) => {
+    Post.update(
+      {
+        name: req.body.name,
+        description: req.body.description,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    )
+      .then((updatedPost) => {
+        res.status(200).json(updatedPost);
+      })
+      .catch((err) => {
+        res.status(500).json(err);
+      });
+  });
   
 //   // Delete route allows to delete the post based on the user id
 //   router.delete('/:id', withAuth, async (req, res) => {
