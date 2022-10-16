@@ -1,10 +1,12 @@
 const newFormHandler = async (event) => {
   event.preventDefault();
 
+  // Collect values from the post form
   const name = document.querySelector('#post-name').value.trim();
   const description = document.querySelector('#post-desc').value.trim();
 
   if (name && description) {
+    // Send a POST request to the API endpoint
     const response = await fetch(`/api/posts`, {
       method: 'POST',
       body: JSON.stringify({ name, description }),
@@ -14,6 +16,7 @@ const newFormHandler = async (event) => {
     });
 
     if (response.ok) {
+      // If successful, redirect the browser to the profile page
       document.location.replace('/profile');
     } else {
       alert('Failed to create post');
@@ -21,6 +24,7 @@ const newFormHandler = async (event) => {
   }
 };
 
+// Delete a post 
 const delButtonHandler = async (event) => {
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
@@ -37,6 +41,7 @@ const delButtonHandler = async (event) => {
   }
 };
 
+// Edit a post 
 const editButtonHandler = async (event) => {
   if(event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
@@ -53,7 +58,7 @@ document
   .addEventListener('submit', newFormHandler);
 
 
-// we ensure that each post has separate button functionality 
+// Ensures that each post has separate button functionality 
 document
   .querySelectorAll('.edit-post').forEach(button => button.addEventListener('click', editButtonHandler))
   
