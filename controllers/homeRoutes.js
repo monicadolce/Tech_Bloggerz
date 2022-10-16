@@ -28,6 +28,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Find the post by a User using the primary Key
 router.get('/post/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
@@ -83,6 +84,7 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+// Edit a post using the primary key
 router.get('/edit/:id', async (req, res) =>{
   const editData = await Post.findByPk(req.params.id)
   const edit = editData.get({ plain: true })
