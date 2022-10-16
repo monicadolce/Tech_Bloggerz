@@ -12,3 +12,6 @@ Application Heroku URL : <a href= "">Visit Monica's Heroku Application</a>
 
 Application GitHub URL : <a href= "https://github.com/monicadolce/Tech_Bloggerz">Visit Monica's GitHub Repository</a> 
 
+## References
+---
+Student Mini Project
