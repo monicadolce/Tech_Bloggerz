@@ -8,7 +8,7 @@ Tech_Bloggers is a CMS-style blog site where developers can publish their blog p
 
 ## Deployed URL
 ---
-Application Heroku URL : <a href= "">Visit Monica's Heroku Application</a> 
+Application Heroku URL : <a href= "https://tech-bloggerzz.herokuapp.com/">Visit Monica's Heroku Application</a> 
 
 Application GitHub URL : <a href= "https://github.com/monicadolce/Tech_Bloggerz">Visit Monica's GitHub Repository</a> 
 
